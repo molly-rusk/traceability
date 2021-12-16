@@ -15,14 +15,15 @@ let breeds = []
 const app = express()
 app.use(express.json())
 
-app.get('/css', function (req,res) {
-    res.sendFile(path.join(__dirname, "../styles.css"))
-})
 
 
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
     rollbar.info('html file served successfully')
+})
+
+app.get('/css', function (req,res) {
+    res.sendFile(path.join(__dirname, "../styles.css"))
 })
 
 app.post('/api/dog', (req,res) => {

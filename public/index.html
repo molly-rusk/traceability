@@ -13,6 +13,10 @@
         <input type="text" placeholder="Type name here"/>
         <button>Add Dog</button>
     </form>
+    <form id="form2">
+        <input id="input2" type="text" placeholder="Type a breed here">
+        <button id="button2">Add Breed</button>
+    </form>
     <script>
         const addForm = document.querySelector('form')
         const nameInput = document.querySelector('input')
@@ -25,6 +29,19 @@
         }
 
         addForm.addEventListener('submit', submitHandler)
+
+        const addForm2 = document.getElementById('form2')
+        const breedInput = document.getElementById('input2')
+
+        function breedSubmitHandler(e){
+            e.preventDefault()
+            axios.post('/api/breed', {breed: breedInput.value, })
+            .then(res => console.log(err))
+            .catch(err => console.log(err))
+        }
+
+        addForm2.addEventListener('submit', breedSubmitHandler)
+        
     </script>
 </body>
 </html>

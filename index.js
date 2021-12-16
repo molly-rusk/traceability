@@ -10,6 +10,7 @@ var rollbar = new Rollbar({
 
 
 let dogs = []
+let breeds = []
 
 const app = express()
 app.use(express.json())
@@ -27,9 +28,21 @@ app.post('/api/dog', (req,res) => {
     name = name.trim()
     dogs.push(name)
 
-    rollbar.log('Dog added successfully', {athor: "Molly", type: "manual"})
+    rollbar.log('Dog added successfully', {author: "Molly", type: "manual"})
 
     res.status(200).send(dogs)
+})
+
+app.post('/api/breed', (req,res) => {
+    let {breed} = req.body
+    breed = breed.trim()
+
+    breeds.push(breed)
+
+    rollbar.log('Breed added sucessfully', {author: "Molly", type: "manual"})
+    
+    res.status(200).send(breeds)
+
 })
 
 app.use(rollbar.errorHandler())
